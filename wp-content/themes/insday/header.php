@@ -12,7 +12,7 @@
     <?php wp_head(); ?>
   </head>
 
-  <body class="is-show-cookie">
+  <body class="<?php  if (empty($_COOKIE['accept'])) : ?>is-show-cookie <?php endif; ?>">
     <div class="preloader">
       <div class="line-scale-party">
         <div></div>

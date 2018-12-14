@@ -14,57 +14,41 @@
                     <div class="section__text section__text--xs"> <?php the_field("description"); ?></div>
                   </div>
                   <div class="portfolio js-animate" data-animation="fadeInUp" data-action="load_items" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
-                        <?php 
-                        $terms = get_terms( array(
-							    'taxonomy' => 'portfolio',
-							    'hide_empty' => false,
-							    'orderby'=> 'id'
-							) ); 
-						?>
                     <nav class="portfolio__nav">
                       <ul>
                         <li>
-                          <a href="#" class="is-active all">все</a>
+                          <a href="#" class="is-active">все</a>
                         </li>
-						<?php if ($terms) {
-							foreach ($terms as $term) { ?>
-		                        <li>
-		                          <a href="<?php echo get_term_link($term) ?>" class="<?php echo $term->slug ?>"><?php echo $term->name ?></a>
-		                        </li>
-							<?php }
-						} ?>
+                        <li>
+                          <a href="#">web</a>
+                        </li>
+                        <li>
+                          <a href="#">graphic</a>
+                        </li>
+                        <li>
+                          <a href="#">branding</a>
+                        </li>
                       </ul>
                     </nav>
                     <div class="portfolio__grid">
-					<?php
-						$args = array(
-						    'post_type' => 'portfolio',
-						    'orderby' => 'date_add',
-						    'post_per_page' => '999'
-						);
-
-						$child_query = new WP_Query( $args );
-					?>
-	                    
-	                    <?php $counter = 1; ?>
-	                    <?php $_counter = 1; ?>
-	                    <?php $count =  $child_query->post_count; ?>
-						<?php while ( $child_query->have_posts() ) : $child_query->the_post(); ?>
-						<?php $cats =  get_the_terms($post->ID, 'portfolio'); ?>
-							<?php if ($counter == 1): ?><div class="portfolio__row"><?php endif ?>
-
-	                        <div class="card card--work <?php getPortfolioBlockClass($counter, $_counter); ?> is-unloaded <?php if (!empty($cats[0])) echo $cats[0]->slug ?>" data-id="<?php echo get_the_ID(); ?>">
-	                          <div class="card__inner">
-	                          </div>
-	                        </div>
-
-							<?php if ($counter == 3 || $_counter == $count) : ?>  </div> <?php $counter = 0; endif; ?>
-							<?php $counter++; ?>
-							<?php $_counter++; ?>
-						<?php endwhile; ?>
-	                  
-
-					<?php wp_reset_postdata(); ?>
+                    	<?php 
+                    	$rows = get_field("portfolio_all");
+                    	
+                    	if ($rows):
+                    		foreach($rows as $row) :
+                    	?>
+							<div class="portfolio__row">
+							<?php 
+								if (!empty($row['row'])) :
+									foreach($row['row'] as $item) :
+								?>
+			                        <div class="card card--work <?php echo $item['size'] ?> <?php echo $item['offset'] ?>  is-unloaded " data-id="<?php echo $item['work'] ?>">
+			                          <div class="card__inner">
+			                          </div>
+			                        </div>
+								<?php endforeach; endif; ?>
+							</div> 
+                    	<?php endforeach; endif; ?>
                     </div>
                   </div>
                 </div>

@@ -46,15 +46,15 @@
                   <div class="article js-animate" data-animation="fadeInUp">
                     <div class="article__left">
                       <div class="section__title">Новая статья</div>
-                      <a href="#" class="btn btn-text">Все статьи</a>
+                      <a href="/blog" class="btn btn-text">Все статьи</a>
                     </div>
                     <div class="article__right">
                       <div class="card card--article">
                         <a href="#" class="card__title">
-                          <span>Статзилла: Статистическая обработка данных</span>
+                          <span> <?php the_field("article_name"); ?></span>
                         </a>
-                        <div class="card__text">Создали эффектный мультиязычный лендинг, информирующий о продукте и условиях проведения ICO </div>
-                        <a href="#" class="card__photo" style="background-image: url('img/article.jpg');"></a>
+                        <div class="card__text"><?php the_field("article_desc"); ?></div>
+                        <a href="<?php the_field("article_link"); ?>" class="card__photo" style="background-image: url('<?php the_field("article_image"); ?>');"></a>
                       </div>
                     </div>
                   </div>
@@ -70,13 +70,13 @@
                         <div class="servicesList__title">Web</div>
                         <ul class="servicesList__links">
                           <li>
-                            <a href="#">Дизайн интерфейса</a>
+                            <a style="cursor: pointer;">Дизайн интерфейса</a>
                           </li>
                           <li>
-                            <a href="#">Front-end/Back-end</a>
+                            <a style="cursor: pointer;">Front-end/Back-end</a>
                           </li>
                           <li>
-                            <a href="#">Техподдержка</a>
+                            <a style="cursor: pointer;">Техподдержка</a>
                           </li>
                         </ul>
                       </li>
@@ -84,10 +84,10 @@
                         <div class="servicesList__title">Graphic</div>
                         <ul class="servicesList__links">
                           <li>
-                            <a href="#">Иллюстрации</a>
+                            <a style="cursor: pointer;">Иллюстрации</a>
                           </li>
                           <li>
-                            <a href="#">3D визуализации</a>
+                            <a style="cursor: pointer;">3D визуализации</a>
                           </li>
                         </ul>
                       </li>
@@ -95,13 +95,13 @@
                         <div class="servicesList__title">Branding</div>
                         <ul class="servicesList__links">
                           <li>
-                            <a href="#">Айдентика</a>
+                            <a style="cursor: pointer;">Айдентика</a>
                           </li>
                           <li>
-                            <a href="#">Нейминг</a>
+                            <a style="cursor: pointer;">Нейминг</a>
                           </li>
                           <li>
-                            <a href="#">Логотипы</a>
+                            <a style="cursor: pointer;">Логотипы</a>
                           </li>
                         </ul>
                       </li>
